@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Full_time_1 {
-	static ArrayList<country> countries = new ArrayList<country>();
 	static ArrayList<country> countriesList = new ArrayList<country>();
 	static HashMap<String, country> countriesMap = new HashMap<String, country>(); 
 	
@@ -14,15 +13,16 @@ public class Full_time_1 {
 		String fileUrl = "D:\\Eclipse\\workspace\\school_2\\Countries of the world.csv";
 		readCountries(fileUrl);
 		
-		//Calculations.getAvgPopulation(countries);
-		//Calculations.printTopDensest(countries, 10);
+		//Calculations.getAvgPopulation(countriesList);
+		//Calculations.printTopDensest(countriesList, 10);
 		
 		//Izsauc dažādas aprēķinu metodes.
 		//Metodes izsauc konkrēti pašai klasei, nevis kādam objektam
 		//Lai varētu izsaukt metodes klasei, konkrētajām metodēm jābūt ar atslēgvārdu static
-			//	Calculations.getUsableCoastlineCountryRatio(countriesList);
-			//	Calculations.printMostPopulatedCountries(countriesList, 10);
-			//	Calculations.printMostDenseCountries(countriesList, 20);
+			//Calculations.getUsableCoastlineCountryRatio(countriesList);
+			Calculations.printMostPopulatedCountries(countriesList, 10);
+			//Calculations.printMostDenseCountries(countriesList, 20);
+			//Calculations.printTopDensest(countriesList,5);
 
 	}
 	
@@ -47,6 +47,7 @@ public class Full_time_1 {
 				country c = new country(data);
 				countriesList.add(c);
 				countriesMap.put(c.name, c);
+				
 			}
 			read.close();
 		} catch (Exception e) {

@@ -10,6 +10,9 @@ import java.util.Comparator;
  */
 
 //Implementē Comparable interfeisu, kas norāda, pēc kā tiks salīdzināti objekti Collections.sort() metodē
+//******************************************************
+//kādēļ šis interfeiss te jāliek? tas ir kāds defoultais, jo atsevišķšs interfeiss nav veidots?
+//*******************************************************
 public class country implements Comparator<country> {
 	String name;
 	String region;
@@ -25,7 +28,7 @@ public class country implements Comparator<country> {
 	
 	public country(String[] data) {
 		this.name = data[0].trim();
-		this.region = data[0].split(";")[1].trim(); //jāpārbauda vai darbojās
+		this.region = data[1].trim();
 		this.population = Long.parseLong(data[2]);
 		this.density = badStringToDouble(data[4]);
 		this.coastline = badStringToDouble(data[5]);
@@ -44,8 +47,9 @@ public class country implements Comparator<country> {
 	public long getPopulation() {
 		return this.population;
 	}
-
-	
+	//**********************************
+	//kādēļ šajos , nomaina uz .?
+	//***********************************
 	static long getLongFromString(String val) {
 		if (val==null || val.length()==0) return 0;
 		val = val.replace(",", ".");

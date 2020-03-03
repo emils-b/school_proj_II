@@ -15,12 +15,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Calculations {
+	
+	//neizprotu kā šis strādā, pamatā popList
 	public static void getAvgPopulation(ArrayList<country> countries) {
 		List<Long> popList = countries.stream().map(country::getPopulation).collect(Collectors.toList());
 		double avg = getAverageFromLongList(popList);
 		System.out.println("AVG pop = " +getInMillions(avg)+" mio");
 	}
 	
+	//izskaidrot kā šis saistās ar @override metodi compare(c1, c2) pie country klases un kād''el iekavās tiek veidots jauns objekts
 	public static void printTopDensest(ArrayList<country> countries, int limit) {
 		Collections.sort(countries, new country());
 		for (int i=0; i<limit; i++) {
@@ -37,13 +40,15 @@ public class Calculations {
 		return sum / list.size();
 	}
 	
+	//return sintakse nav skaidra, kādēļ long ir iekavās?
 	public static long getInMillions(double num) {
 		return (long)(num / 1000000);
 	}
 	
+	//ja pareizi saprotu šis liek izveidot decimālo formātu pēc konkrēta veida?
 	public static double round(double num) {
 		DecimalFormat df = new DecimalFormat("#,##");      
-		return Double.valueOf(df.format(num));
+		return Double.valueOf(df.format(num)); //pārveido skaitli uz double pēc konkrētā forma'ta
 	}
 	
 	static int getUsableCoastlineCountryRatio(ArrayList<country> countriesList) {
@@ -60,7 +65,7 @@ public class Calculations {
 	
 	static void printMostPopulatedCountries(ArrayList<country> countriesList, int limit) {
 		//Sakārto padoto Country objektu sarakstu pēc defaultā kārtotāja (tā, kas ir Country klasē norādīts compareTo() metodē)
-		Collections.sort(countriesList, new DensityComparator());
+		Collections.sort(countriesList, new country()); //kas te tiek rakstīts iekavās un pēc kāda pricipa, jo bez country ir errors?
 		System.out.println("Top " +limit+" populated countries");
 		for (int i=0; i<countriesList.size() && i<limit; i++) {
 			country c = countriesList.get(i);
@@ -89,6 +94,9 @@ public class Calculations {
 	}
 }
 //get those that are top 20 in GDP, Literacy, Phones  (need new lists for these? or myb just c names)
+
+//sanāk, ka lai collections.sort sakaŗtotu ArrayList secīgi pēc kāda lieluma, tajā iekavās ir jānorāda klase/objekts, 
+//kurš parāda pēc kura raksturlieluma kārtot?
 class DensityComparator implements Comparator<country> {
     public int compare(country c1, country c2) {
     	if (c1.density < c2.density) return 1;
