@@ -20,9 +20,12 @@ public class Full_time_1 {
 		//Metodes izsauc konkrēti pašai klasei, nevis kādam objektam
 		//Lai varētu izsaukt metodes klasei, konkrētajām metodēm jābūt ar atslēgvārdu static
 			//Calculations.getUsableCoastlineCountryRatio(countriesList);
-			Calculations.printMostPopulatedCountries(countriesList, 10);
+			//Calculations.printMostPopulatedCountries(countriesList, 10);
 			//Calculations.printMostDenseCountries(countriesList, 20);
 			//Calculations.printTopDensest(countriesList,5);
+			//Calculations.printCountriesWithBigestGdp(countriesList,5);
+			//Calculations.printCountriesWithBigestGdpToPopulation(countriesList,5);
+			Calculations.printCountriesTopInGdpLiteracyPhones(countriesList, 50);
 
 	}
 	

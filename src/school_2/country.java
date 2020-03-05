@@ -23,6 +23,8 @@ public class country implements Comparator<country> {
 	double area;
 	double gdp;
 	private double usableCoastlineLimit = 1;
+	double gdpToPop;
+	double phonesPer1000;
 	
 	public country() {};
 	
@@ -35,6 +37,7 @@ public class country implements Comparator<country> {
 		this.literacy = badStringToDouble(data[9]);
 		this.area = badStringToDouble(data[3]);
 		this.gdp = badStringToDouble(data[8]);
+		this.phonesPer1000 = badStringToDouble(data[10]);
 	}
 	public boolean hasCoastline() {
 		return this.coastline > 0;
