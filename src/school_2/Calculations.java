@@ -11,7 +11,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Calculations {
@@ -117,50 +119,50 @@ public class Calculations {
 		return gdp/pop;
 	}
 	
-	static boolean getCountriesWithTopLiteracy(ArrayList<country> countriesList, int limit, String countryName) {
-		boolean isInTop = false;
-		Collections.sort(countriesList, new literacyComparator());
+	static Set<String> getCountriesWithTopLiteracy(ArrayList<country> countriesList, int limit) {
+		Set<String> listTopCountries = new HashSet<String>();
+		Collections.sort(countriesList, new LiteracyComparator());
 		for (int i=0; i<limit; i++) {
-			if(countryName.equals(countriesList.get(i).name)) {
-				isInTop=true;
-			}
+			listTopCountries.add(countriesList.get(i).name);
 		}
-		return isInTop;
+		return listTopCountries;
 	}
 	
-	static boolean getCountriesWithTopPhonePerCap(ArrayList<country> countriesList, int limit, String countryName) {
-		boolean isInTop = false;
+	static Set<String> getCountriesWithTopPhonePerCap(ArrayList<country> countriesList, int limit) {
+		Set<String> listTopCountries = new HashSet<String>();
 		Collections.sort(countriesList, new phonesPer1000Comparator());
 		for (int i=0; i<limit; i++) {
-			if(countryName.equals(countriesList.get(i).name)) {
-				isInTop=true;
-			}
+			listTopCountries.add(countriesList.get(i).name);
 		}
-		return isInTop;
+		return listTopCountries;
 	}
 	
-	static boolean getCountriesWithBigestGdp(ArrayList<country> countriesList, int limit, String countryName) {
-		boolean isInTop = false;
+	static Set<String> getCountriesWithBigestGdp(ArrayList<country> countriesList, int limit) {
+		Set<String> listTopCountries = new HashSet<String>();
 		Collections.sort(countriesList, new GdpComparator());
 		for (int i=0; i<limit; i++) {
-			if(countryName.equals(countriesList.get(i).name)) {
-				isInTop=true;
-			}
+			listTopCountries.add(countriesList.get(i).name);
 		}
-		return isInTop;
+		return listTopCountries;
 	}
 	
 	static void printCountriesTopInGdpLiteracyPhones(ArrayList<country> countriesList, int limit) {
 		ArrayList<String> countryList = new ArrayList<String>();
-		System.out.println("Top "+limit+" countries in Literacy, Phone per capita and GDP is :");
+		System.out.println("Among Top "+limit+" countries in Literacy, Phone per capita and GDP are:");
+		Set<String> topGdp = getCountriesWithTopLiteracy(countriesList, limit);
+		Set<String> topPhonePerCap = getCountriesWithTopPhonePerCap(countriesList, limit);
+		Set<String> topLit = getCountriesWithTopLiteracy(countriesList, limit);
+		int i=1;
 		for (country c:countriesList) {
-			if (getCountriesWithTopLiteracy(countriesList, limit, c.name) && getCountriesWithBigestGdp(countriesList, limit, c.name) && getCountriesWithTopPhonePerCap(countriesList, limit, c.name)) {
-				countryList.add(c.name);
+			if (topGdp.contains(c.name)&&topPhonePerCap.contains(c.name)&&topLit.contains(c.name)) {
+				countryList.add(i+" "+c.name);
+				i++;
 			}
 		}
 		for(String c:countryList) {
 			System.out.println(c);
 		}
+		
 	}
 	
 	//*******************
@@ -212,7 +214,7 @@ class GdpToPopRatioComparator implements Comparator<country> {
 		return 0;
 	}
 }
-
+/*
 class literacyComparator implements Comparator<country> {
 	public int compare(country c1, country c2) {
     	if (c1.literacy < c2.literacy) return 1;
@@ -220,7 +222,7 @@ class literacyComparator implements Comparator<country> {
 		return 0;
 	}
 }
-
+*/
 class phonesPer1000Comparator implements Comparator<country> {
 	public int compare(country c1, country c2) {
     	if (c1.phonesPer1000 < c2.phonesPer1000) return 1;
