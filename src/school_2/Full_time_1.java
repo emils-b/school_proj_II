@@ -25,7 +25,11 @@ public class Full_time_1 {
 			//Calculations.printTopDensest(countriesList,5);
 			//Calculations.printCountriesWithBigestGdp(countriesList,5);
 			//Calculations.printCountriesWithBigestGdpToPopulation(countriesList,5);
-			Calculations.printCountriesTopInGdpLiteracyPhones(countriesList, 50);
+			//Calculations.printCountriesTopInGdpLiteracyPhones(countriesList, 20);
+		ArrayList<Double> first = Calculations.makeAreaList(countriesList);	
+		ArrayList<Double> sec = Calculations.makeGdpList(countriesList);
+		
+		System.out.println(Calculations.getCorellationRateFromLists(first, sec));
 
 	}
 	
@@ -47,10 +51,10 @@ public class Full_time_1 {
 				String row = read.nextLine();
 				if (i<6) continue;
 				String[] data = row.split(";");
+				if (data.length<19) continue; //dažām valstīm uzmet eroru, garums mazāks
 				country c = new country(data);
 				countriesList.add(c);
 				countriesMap.put(c.name, c);
-				
 			}
 			read.close();
 		} catch (Exception e) {

@@ -25,19 +25,42 @@ public class country implements Comparator<country> {
 	private double usableCoastlineLimit = 1;
 	double gdpToPop;
 	double phonesPer1000;
+	double netMigration;
+	double infantMortality;
+	double arable;
+	double crops;
+	double other; //???
+	double climate;
+	double birthrate;
+	double deathrate;
+	double agriculture;
+	double industry;
+	double service;
 	
 	public country() {};
 	
 	public country(String[] data) {
 		this.name = data[0].trim();
 		this.region = data[1].trim();
-		this.population = Long.parseLong(data[2]);
+		//this.population = Long.parseLong(data[2]);
+		this.population = badStringToLong(data[2]);
 		this.density = badStringToDouble(data[4]);
 		this.coastline = badStringToDouble(data[5]);
 		this.literacy = badStringToDouble(data[9]);
 		this.area = badStringToDouble(data[3]);
 		this.gdp = badStringToDouble(data[8]);
 		this.phonesPer1000 = badStringToDouble(data[10]);
+		this.netMigration = badStringToDouble(data[6]);
+		this.infantMortality = badStringToDouble(data[7]);
+		this.arable = badStringToDouble(data[11]);
+		this.crops = badStringToDouble(data[12]);
+		this.other = badStringToDouble(data[13]);
+		this.climate = badStringToDouble(data[14]);
+		this.birthrate = badStringToDouble(data[15]);
+		this.deathrate = badStringToDouble(data[16]);
+		this.agriculture = badStringToDouble(data[17]);
+		this.industry = badStringToDouble(data[18]);
+		this.service = badStringToDouble(data[19]);
 	}
 	public boolean hasCoastline() {
 		return this.coastline > 0;
@@ -69,6 +92,12 @@ public class country implements Comparator<country> {
 		if (num==null || num.length()==0) return 0;
 		num = num.replace(",", ".");
 		return Double.parseDouble(num);
+	}
+	
+	public long badStringToLong (String num) {
+		if (num==null || num.length()==0) return 0;
+		num = num.replace(",", ".");
+		return Long.parseLong(num);
 	}
 	
 	//Metode vajadzīga Collections.sort() metodei. Šeit tiek norādīts, pēc kā Country objekti tiks kārtoti.

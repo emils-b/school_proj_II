@@ -162,7 +162,46 @@ public class Calculations {
 		for(String c:countryList) {
 			System.out.println(c);
 		}
-		
+	}
+	
+	static ArrayList<Double> makeAreaList(ArrayList<country> countriesList){
+		ArrayList<Double> first = new ArrayList<Double>();
+		for (country c: countriesList) {
+			first.add(c.area);
+		}
+		return first;
+	}
+
+	static ArrayList<Double> makeGdpList(ArrayList<country> countriesList){
+		ArrayList<Double> sec = new ArrayList<Double>();
+		for (country c: countriesList) {
+			sec.add(c.gdp);
+		}
+		return sec;
+	}
+	
+	static double getCorellationRateFromLists(ArrayList<Double> first, ArrayList<Double> sec) {
+		double ratio = 0;
+		if (first==null || sec==null || first.size()!=sec.size()) return ratio;
+		int i=0, n=first.size();
+		double xSum=0, ySum=0, xySum=0, x2Sum=0, y2Sum=0;
+		for (Double xD : first) {
+			Double yD = sec.get(i);
+			double x = xD.doubleValue();
+			double y = yD.doubleValue();
+			double xy = x * y;
+			double x2 = x * x;
+			double y2 = y *y;
+			xSum += x;
+			ySum += y;
+			xySum += xy;
+			x2Sum += x2;
+			y2Sum += y2;
+			i++;
+		}
+		ratio = (n * xySum - xSum * ySum) / Math.sqrt((n * x2Sum - xSum * xSum) * (n * y2Sum - ySum * ySum));
+		ratio = (double) (Math.round(ratio * 100)) / 100;
+		return ratio;
 	}
 	
 	//*******************
