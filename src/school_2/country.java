@@ -39,19 +39,23 @@ public class country implements Comparator<country> {
 	
 	public country() {};
 	
+	/*
+	 * Jāizveido, ka 6 uzdevumam caur objekta ielasīšanu veido String arraylist, kurā tad ir konkrētais parametrs this.gdp piem
+	 * un to tad caur konstruktoru liek iekšā
+	 */
 	public country(String[] data) {
 		this.name = data[0].trim();
 		this.region = data[1].trim();
 		//this.population = Long.parseLong(data[2]);
 		this.population = badStringToLong(data[2]);
+		this.area = badStringToDouble(data[3]);
 		this.density = badStringToDouble(data[4]);
 		this.coastline = badStringToDouble(data[5]);
-		this.literacy = badStringToDouble(data[9]);
-		this.area = badStringToDouble(data[3]);
-		this.gdp = badStringToDouble(data[8]);
-		this.phonesPer1000 = badStringToDouble(data[10]);
 		this.netMigration = badStringToDouble(data[6]);
 		this.infantMortality = badStringToDouble(data[7]);
+		this.gdp = badStringToDouble(data[8]);
+		this.literacy = badStringToDouble(data[9]);
+		this.phonesPer1000 = badStringToDouble(data[10]);
 		this.arable = badStringToDouble(data[11]);
 		this.crops = badStringToDouble(data[12]);
 		this.other = badStringToDouble(data[13]);

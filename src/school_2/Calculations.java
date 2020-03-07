@@ -25,9 +25,7 @@ public class Calculations {
 		double avg = getAverageFromLongList(popList);
 		System.out.println("AVG pop = " +getInMillions(avg)+" mio");
 	}
-	//**************************************************
-	//izskaidrot kā šis saistās ar @override metodi compare(c1, c2) pie country klases un kād''el iekavās tiek veidots jauns objekts
-	//**************************************************
+
 	public static void printTopDensest(ArrayList<country> countries, int limit) {
 		Collections.sort(countries, new country());
 		for (int i=0; i<limit; i++) {

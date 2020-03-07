@@ -8,10 +8,11 @@ import java.util.Scanner;
 public class Full_time_1 {
 	static ArrayList<country> countriesList = new ArrayList<country>();
 	static HashMap<String, country> countriesMap = new HashMap<String, country>(); 
+
 	
 	public static void main(String[] args) {
 		String fileUrl = "D:\\Eclipse\\workspace\\school_2\\Countries of the world.csv";
-		readCountries(fileUrl);
+		readCountries(fileUrl);		
 		
 		//Calculations.getAvgPopulation(countriesList);
 		//Calculations.printTopDensest(countriesList, 10);
