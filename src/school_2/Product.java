@@ -17,6 +17,7 @@ public class Product {
 	}
 	
 	void sell (int amount) {
+		if ("MAX".equals(this.name)) return; //lai diagramā y ass nelēkā izveido konkstanto vērtību, kura vienmeēr būs vislielākā un netiks aiztikta
 		if (amount > this.stock) {
 			amount = this.stock;
 		}
@@ -25,14 +26,15 @@ public class Product {
 	}
 	
 	void refillStock(int amount) {
+		if ("MAX".equals(this.name)) return;
 		if (amount > this.stock) {
 		this.stock = amount;
 		}
-		System.out.println(this.name+" refill to "+this.stock+" from max " +this.startStock);
+		//System.out.println(this.name+" refill to "+this.stock+" from max " +this.startStock);
 	}
 	
-	public String toString() {
+	/*public String toString() {
 		return this.name+" has "+this.stock + " int stock";
-	}
+	}*/
 
 }

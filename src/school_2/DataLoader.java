@@ -3,13 +3,18 @@ package school_2;
 import java.util.ArrayList;
 
 public class DataLoader {
-	static String[] productNames = {"Bananas", "Apples", "Pears", "Water", "Eggs", "Chocolate", "Toilet papper"};
-	static int[] productStartingStock = {400, 300, 350, 1800, 600, 777, 543};
+	static String[] productNames = {"Bananas", "Apples", "Pears", "Water", "Eggs", "Chocolate", "Toilet papper", "MAX"};
+	static int[] productStartingStock = {400, 300, 350, 1000, 600, 777, 543, 1200};
 	ArrayList<Product> products;
 	
 	public DataLoader(int tickSize, int refillTime) {
 		init();
-		runBusiness(tickSize, refillTime);
+		Thread thread = new Thread() {
+			public void run() {
+				runBusiness(tickSize, refillTime);
+			}
+		};
+		thread.start();
 	}
 	
 	void runBusiness(int tickSize, int refillTime) {

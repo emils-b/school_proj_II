@@ -11,15 +11,25 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class JLive extends JFrame {
 	DefaultCategoryDataset barDataset;
 	DefaultCategoryDataset lineDataset;
-	JLive(){
+	DataLoader dataLoader;
+	
+	JLive(int ticks, int refill, int refreshChart){
+		this.dataLoader = new DataLoader(ticks, refill);
 		this.setTitle("JLive data");
 		this.setBounds(300, 50, 800, 600);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JLive.EXIT_ON_CLOSE);
 		//this.pack(); //izveido rāmja izmēru tik lielu cik nepieciešams
-		createBarChart();
+		//createBarChart();
 		createLineChart();
 		this.pack();
+		int tick = 1;
+		do {
+			pause(refreshChart);
+			//updateBarChart();
+			updateLineChart();
+			tick++;
+		}while(true);
 	}
 	
 	void createLineChart() {
@@ -40,16 +50,43 @@ public class JLive extends JFrame {
 	
 	void createLineDataset() {
 		lineDataset = new DefaultCategoryDataset();
-		for(int i=0; i<12; i++) {
-			lineDataset.addValue(i*5, "Line one", (Integer)i);
+		for(int i=0; i<dataLoader.products.size(); i++) {
+			Product p = dataLoader.products.get(i);
+			lineDataset.addValue(p.stock, p.name, (Integer)0);
 		}
 	}
 	
 	void createBarDataset() {
 		barDataset = new DefaultCategoryDataset();
-		for (int i=0; i<10; i++) {
-			barDataset.addValue(i*10 , "Bar " +i , "random data" );
+		for (int i=0; i<dataLoader.products.size(); i++) {
+			Product p = dataLoader.products.get(i);
+			barDataset.addValue(p.stock , p.name , "stock data" );
 		}
 	}
-
+	
+	void pause (int millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (Exception e) {	
+		}
+	}
+	
+	void updateLineChart() {
+		int num = dataLoader.products.get(0).stockChanges.size();
+		if (lineDataset.getColumnCount()>30) {
+			lineDataset.removeColumn(0);
+		}
+		for(int i=0; i<dataLoader.products.size(); i++) {
+			Product p = dataLoader.products.get(i);
+			lineDataset.addValue(p.stock, p.name, (Integer)num);
+		}
+	}
+	
+	void updateBarChart() {
+		barDataset.clear();
+		for (int i=0; i<dataLoader.products.size(); i++) {
+			Product p = dataLoader.products.get(i);
+			barDataset.addValue(p.stock, p.name, "stock data");
+		}
+	}
 }
