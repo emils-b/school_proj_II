@@ -7,7 +7,7 @@ public class Multiple_thr {
 		int productSellIteration = 50;
 		int productRefillAfterIterations = 100;
 		int chartDataRepaintIteration = 500;
-		new JLive(productSellIteration,productRefillAfterIterations,chartDataRepaintIteration  );
+		new JLive(productSellIteration,productRefillAfterIterations,chartDataRepaintIteration);
 
 	}
 
