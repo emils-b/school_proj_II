@@ -30,6 +30,26 @@ public class Patient extends AppUser {
 		return ord;
 	}
 	
+	
+	public void changeStatus() {
+		int statusListIndex = (int)(Math.random()*(((MainInheritance.patientStatusList.length-1)-0)+1))+0;
+		this.status = MainInheritance.patientStatusList[statusListIndex];
+		incrementBill();
+	}
+	
+	public void incrementBill() {
+		if (this.status.equals("Discharged")) {
+			this.setBill(200);
+		}
+		else if (this.status.equals("Admited")) {
+			this.setBill(50);
+		}
+		else if (this.status.equals("In Transfere")) {
+			this.setBill(500);
+		}
+		else return;
+	}
+	
 	public void printUserInfo() {
 		super.printUserInfo();
 		System.out.println("Discharge status is "+this.status+" and bill is "+this.bill);

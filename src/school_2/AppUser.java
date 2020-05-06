@@ -21,7 +21,7 @@ public class AppUser {
 	}
 	
 	private String getUserId() {
-		String id = this.name.substring(0,3)+Math.round(Math.random()*1000000)+this.surname.substring(0,2);
+		String id = this.name.substring(0,2)+Math.round(Math.random()*1000000)+this.surname.substring(0,2);
 		return id;
 	}
 	
