@@ -11,7 +11,7 @@ public class Second {
 		this.color = color;
 		this.number = name.length();
 		this.isAlive = Character.isUpperCase(name.charAt(0));//isFirstUpperCase();
-		System.out.println(toString());
+		//System.out.println(toString());
 	}
 	
 	/*
